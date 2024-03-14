@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>株式会社First AI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.151.3/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.151.3/examples/jsm/"
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="contentContainer" class="content-container">
+    <video id="videoPlayer" playsinline>
+        お使いのブラウザはビデオタグをサポートしていません。
+    </video>
+    <img id="imageDisplay">
+</div>
+<!--<button id="fullscreenButton">全画面表示</button>-->
+<!--<form id="inputContainer" class="active">
+  <textarea id="userInput" placeholder="テキストを入力してください"></textarea><br>
+  <input type="submit" id="sendButton"value="送信">
+</form>-->
+<div id="inputContainer" class="active">
+<input type="text" id="textInput" placeholder="テキストを入力してください" />
+<button id="sendButton">送信</button>
+</div>
+
+<form id="textForm" style="display: none;">
+  <textarea id="textInput" placeholder="テキストを入力してください"></textarea><br>
+  <input type="submit" value="生成">
+</form>
+
+    <div id="responseContainer">応答がここに表示されます。</div>
+    <button id="toggleResponse">返答を表示</button>
+    <button id="playCenterVideo">再生</button>
+    <button id="lockCameraButton">切り替え</button>
+    <div id="videoListContainer">
+        <!-- 動画リストがここに挿入されます -->
+    </div>
+    <button id="changeListButton">詳しく見る</button>
+      
+    <!-- ハンバーガーメニューアイコン -->
+<div class="hamburger-menu">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+  
+  <!-- メニューの内容 -->
+  <div class="menu-content" id="menuallContent">
+    <div class="menu-content" id="menuContent"></div>
+  </div>
+ <!-- モーダル表示用のボタン -->
+<button id="showModalButton">詳細を表示</button>
+
+<!-- モーダルのコンテナ -->
+<div id="myModal" class="modal">
+  <!-- モーダルの内容 -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div id="modalBody">
+      <!-- 文字や画像を動的に追加するためのコンテナ -->
+    </div>
+  </div>
+</div>
+
+<!-- 再生速度を選択するドロップダウンメニュー -->
+<select id="playbackRate">
+  <option value="0.5">0.5x</option>
+  <option value="1" selected>1x（通常速度）</option>
+  <option value="1.5">1.5x</option>
+  <option value="2">2x</option>
+</select>
+
+
+    <script src="script.js" type="module"></script>
+    <script src="https://cdn.socket.io/4.7.4/socket.io.min.js" crossorigin="anonymous"></script>
+</body>
+</html>
