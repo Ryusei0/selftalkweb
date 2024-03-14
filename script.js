@@ -606,7 +606,7 @@ let audioQueueuniv = []; // 再生待ちの音声URLを保持するキュー
 
 //追加したところ継続通信
 document.addEventListener('DOMContentLoaded', function() {
-    var socket = io.connect("ws://127.0.0.1:8000");
+    var socket = io.connect("https://selftalk.onrender.com");
 
     socket.on('connect', function() {
         console.log('Connected to the server.');
