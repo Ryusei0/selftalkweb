@@ -1,3 +1,4 @@
+
 body {
     margin: 0;
       /* overflow: hidden;   */
@@ -11,14 +12,15 @@ canvas {
     z-index: 1; /* 必要に応じてz-indexを設定 */
 }
 /* 要素が画面幅を超えないようにする */
-html, body{
-    max-width: 100vw;
-    overflow-x: hidden;
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
 
 #playbackRate{
     position: fixed;
-    top: 110px;
+    bottom: 135px;
     right: 10px;
     z-index: 999;
     padding: 10px 20px;
@@ -77,16 +79,19 @@ button:hover {
 /* 返答コンテナのスタイル */
 #responseContainer {
     position: fixed;
-    top: 10px;
+    top: 10%;
+    bottom: 10%;
     left: 50%;
     transform: translateX(-50%);
     display: none; /* 初期状態では非表示 */
-    background: #fff;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 8px 16px 0 rgba(249, 249, 249, 1);
     padding: 10px;
     border-radius: 5px;
-    max-width: calc(100% - 40px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 80%;
     font-size: 0.9rem;
+    color:  white;
     z-index: 1002;
 }
 
@@ -102,6 +107,7 @@ button:hover {
     border-radius: 5px;
     cursor: pointer;
     z-index: 1000; /* 必ず最前面に */
+    overflow-y: auto;
 }
 
 #toggleResponse:hover {
@@ -126,7 +132,8 @@ select {
     left: 20px; /* Adjust the left position as needed */
     z-index: 1001; /* Ensure it is on top of other elements */
 }
-  .bar {
+/* ハンバーガーメニューの基本スタイル */
+.bar {
     background-color: #333;
     height: 3px;
     width: 100%;
@@ -139,9 +146,27 @@ select {
   .bar:nth-child(2) { top: 11px; }
   .bar:nth-child(3) { top: 22px; }
   
-  /* メニュー内容のz-indexを更新 */
+  /* Xマークに変化するためのクラス */
+  .change .bar:nth-child(1) {
+    transform: rotate(-45deg) translate(-9px, 6px);
+    background-color: #fff; /* 白色に変更 */
+  }
+  
+  .change .bar:nth-child(2) { 
+    opacity: 0;
+  }
+  
+  .change .bar:nth-child(3) {
+    transform: rotate(45deg) translate(-9px, -6px);
+    background-color: #fff; /* 白色に変更 */
+  }
+  
+
+  
   .menu-content {
     display: none;
+    justify-content: center;
+    align-items: center;
     position: fixed;
     left: 0;
     top: 0;
@@ -149,21 +174,35 @@ select {
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
-    box-shadow: 0 8px 16px 0 #f9f9f9;;
-    padding: 12px 16px;
+    box-shadow: 0 8px 16px 0 rgba(249, 249, 249, 1);
+    padding-top: 50px; /* 上部のパディングを追加 */
+    padding-bottom: 50px; /* 下部のパディングを追加 */
     z-index: 1000; 
-  }  
+}
 
-  #menuContent{
-    padding: 20% 20%;
-  }
+#menuContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    margin: 0 auto; /* 上下のマージンを0にし、左右のマージンをautoに設定 */
+    overflow-y: auto;
+}
+
+.video-button {
+    display: block;
+    align-items: center;
+    width: 50%; 
+    margin: 20px auto; /* 上下に20px、左右のマージンをautoに設定して中央寄せ */
+    /* その他のボタンスタイリングはここに追加 */
+}
 
   /* 動画カテゴリー */
   #videoListContainer {
     position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    bottom: 185px;
+    right: 10px;
     z-index: 1000; /* Make sure this is higher than other elements if necessary */
     color: black; /* Or any color you wish */
     text-align: center; /* Center the text within the div */
@@ -185,12 +224,26 @@ select {
     /* Rest of your styling */
 }
 
-#lockCameraButton {
+#company{
     position: fixed;
-    top: 60px;
+    bottom: 340px;
     right: 10px;
     z-index: 999; /* Ensure it's above other elements */
-    /* Rest of your styling */
+}
+
+#restart{
+    position: fixed;
+    bottom: 290px;
+    right: 10px;
+    z-index: 999; /* Ensure it's above other elements */
+}
+
+
+#specialButton{
+    position: fixed;
+    bottom: 240px;
+    right: 10px;
+    z-index: 999; /* Ensure it's above other elements */
 }
 
 #changeListButton {
@@ -216,13 +269,13 @@ select {
     z-index: 1000; 
   }  
 
-.modal-content {
-    background-color: rgba(0, 0, 0, 0.5);
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 90%; /* モーダルの幅を調整 */
-}
+/*.modal-content {*/
+/*    background-color: rgba(0, 0, 0, 0.5);*/
+/*    margin: 15% auto;*/
+/*    padding: 20px;*/
+/*    border: 1px solid #888;*/
+ /*   width: 90%; */
+/*}*/
 
 .close {
     color: #aaaaaa;
@@ -238,27 +291,27 @@ select {
     cursor: pointer;
 }
 
-#showModalButton {
-    display: none;
-    position: fixed; /* ボタンを画面に固定 */
-    bottom: 85px;
-    left: 30%;
-    transform: translateX(-50%); /* ボタンの幅の半分だけ左に移動して、完全に中央に配置 */
-    z-index: 999; /* 他の要素より前面に表示 */
-    padding: 10px 20px; /* パディング */
-    border: none; /* 枠線なし */
-    background-color: #007bff; /* 背景色 */
-    color: #ffffff; /* 文字色 */
-    border-radius: 15px; /* 角丸 */
-    cursor: pointer; /* カーソル */
-    min-width: 44px; /* 最小幅 */
-    min-height: 44px; /* 最小高さ */
-}
+/*#showModalButton {*/
+  /*  display: none;*/
+  /*  position: fixed; /* ボタンを画面に固定 */
+  /*  bottom: 85px;
+ /*    left: 30%;
+ /*   transform: translateX(-50%); /* ボタンの幅の半分だけ左に移動して、完全に中央に配置 */
+ /*   z-index: 999; /* 他の要素より前面に表示 */
+ /*   padding: 10px 20px; /* パディング */
+ /*   border: none; /* 枠線なし */
+ /*   background-color: #007bff; /* 背景色 */
+ /*   color: #ffffff; /* 文字色 */
+ /*   border-radius: 15px; /* 角丸 */
+ /*   cursor: pointer; /* カーソル */
+ /*   min-width: 44px; /* 最小幅 */
+  /*  min-height: 44px; /* 最小高さ */
+/*}
 /* モーダル内の画像スタイル */
-.modal-image {
-    width: 50%; 
-    top: 5px;
-}
+/*.modal-image {*/
+/*    width: 50%; */
+ /*   top: 5px;*/
+/*}*/
 
 #videoPlayer, #contentContainer, #imageDisplay {
         width: 45vw; /* ビューポートの幅に合わせてサイズを設定 */
@@ -266,9 +319,9 @@ select {
         height: auto; /* 高さを自動調整 */
         object-fit: contain; /* コンテンツをコンテナ内に収める */
         position: absolute; /* 要素をページから独立させる */
-        top: 50%; /* 要素の上端をビューポートの中心に合わせる */
+        top: 3px; /* 要素の上端をビューポートの中心に合わせる */
         left: 50%; /* 要素の左端をビューポートの中心に合わせる */
-        transform: translate(-50%, -50%); /* 要素を中央に配置 */
+        transform: translate(-50%, 0%); /* 要素を中央に配置 */
     }
 
 
@@ -277,8 +330,49 @@ select {
     display: none;
 }
 
+#audioPermissionContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 1010; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 半透明の黒背景を追加 */
+}
+.audioPermissionButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.audioPermissionButton:hover {
+    background-color: #0056b3;
+}
+
 
 @media (max-width: 768px) {
+    #videoListContainer {
+        position: fixed;
+        bottom: 185px;
+        right: 10px;
+        z-index: 1000; /* Make sure this is higher than other elements if necessary */
+        color: black; /* Or any color you wish */
+        text-align: center; /* Center the text within the div */
+        /* Additional styles to ensure visibility/readability */
+        background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 16px; /* Or the size you prefer */
+        font-family: 'Arial', sans-serif; /* Or the font you prefer */
+    }
 
     #videoPlayer,
     #contentContainer,
@@ -289,9 +383,9 @@ select {
         max-height: 56.25vw; /* アスペクト比16:9を保持するためのビューポート幅に基づいた最大高さ */
         object-fit: contain; /* コンテンツをコンテナ内に収める */
         position: absolute; /* 要素を固定位置から相対位置に変更 */
-        top: 50%; /* 要素の上端をビューポートの中心に合わせる */
+        top: 30px; /* 要素の上端をビューポートの中心に合わせる */
         left: 50%; /* 要素の左端をビューポートの中心に合わせる */
-        transform: translate(-50%, -50%); /* 要素を中央に配置 */
+        transform: translate(-50%, 0%); /* 要素を中央に配置 */
     }
     /* スマホ表示のためのスタイル調整 */
     #inputContainer, #responseContainer {
@@ -303,7 +397,7 @@ select {
         padding: 8px 16px;
     }
 
-    .modal-image {
-        width: 100%; /* パソコンでの表示サイズを50%に調整 */
-    }
+  /*   .modal-image {*/
+   /*      width: 100%; /* パソコンでの表示サイズを50%に調整 */
+  /*   }*/
 }
