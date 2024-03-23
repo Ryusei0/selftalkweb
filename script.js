@@ -872,7 +872,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // specialModeの状態に応じて異なる動作を行う
     if (specialMode) {
-        this.textContent = '質問モード';
+        this.textContent = 'キャリア設計モード';
         console.log('Special mode enabled');
     } else {
         this.textContent = '深掘りモード';
